@@ -1,0 +1,15 @@
+<div class="mb-4">
+  <h1>Order by:</h1>
+  <%= link_to 'Title', '',
+              data: {
+                controller: 'order-notes',
+                action: 'order-notes#title_order'
+              }, class: green_btn
+  %>
+  <%= link_to 'Date', '',
+              data: {
+                controller: 'order-notes',
+                action: 'order-notes#date_order'
+              }, class: green_btn
+  %>
+</div>
