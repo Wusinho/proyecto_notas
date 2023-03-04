@@ -1,14 +1,10 @@
 class NotesController < ApplicationController
   def index
-    @notes = current_user.notes
-  end
-
-  def title_order
-    @notes = current_user.notes_title_ordered
-  end
-
-  def note_date_order
-    @notes = current_user.notes_date_ordered
+    if params[:sort]
+      @notes = current_user.notes.order(params[:sort])
+    else
+      @notes = current_user.notes
+    end
   end
 
 end
