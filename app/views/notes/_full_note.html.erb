@@ -1,0 +1,10 @@
+<%= turbo_frame_tag 'edit_card' do %>
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title"><%= note.title %></h5>
+    <p class="card-text"><%= note.body %></p>
+    <p class="card-text"><%= note.note_date %></p>
+  </div>
+  <%= link_to 'Edit', note_path(note), class: blue_btn  %>
+</div>
+<% end %>

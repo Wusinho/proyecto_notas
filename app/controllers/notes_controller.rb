@@ -1,6 +1,7 @@
 class NotesController < ApplicationController
-  before_action :set_note, only: [:show]
+  before_action :set_note, only: [:show, :note_card, :edit, :update]
   def index
+    @note = Note.new
     if params[:sort]
       @notes = current_user.notes.order(params[:sort])
     else
@@ -8,7 +9,27 @@ class NotesController < ApplicationController
     end
   end
 
+  def create
+    @note = current_user.notes.build(note_params)
+
+    respond_to do |format|
+      @note.save
+      format.turbo_stream
+    end
+
+  end
+
+  def update
+    respond_to do |format|
+      @note.update(note_params)
+      format.turbo_stream
+    end
+  end
+
   def show
+  end
+
+  def note_card
   end
 
   private
@@ -17,4 +38,7 @@ class NotesController < ApplicationController
     @note = Note.find(params[:id])
   end
 
+  def note_params
+    params.require(:note).permit(:body, :title, :note_date)
+  end
 end
