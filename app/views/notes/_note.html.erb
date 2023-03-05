@@ -6,7 +6,9 @@
     <p class="card-text text-truncate"><%= note.body %></p>
     <p class="card-text"><%= note.note_date %></p>
     <div class="text-end">
-      <%= link_to 'Read more', note %>
+      <%= link_to 'Read more', note_path(note), data: {
+        turbo_frame: 'card_note'
+      } %>
     </div>
   </div>
 </div>
