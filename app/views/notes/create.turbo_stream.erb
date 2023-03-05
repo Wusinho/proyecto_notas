@@ -1,8 +1,8 @@
 <% if @note.valid? %>
 <%= turbo_stream.prepend 'notes', @note %>
 
-<%= turbo_stream.replace "#{dom_id Note.new}_form" do %>
-  <%= render 'form', post: Note.new %>
+<%= turbo_stream.replace "note_form" do %>
+  <%= render 'form', note: Note.new %>
 <% end %>
 
 <% else %>
