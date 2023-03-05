@@ -31,6 +31,13 @@ RSpec.describe NotesController, type: :request do
         expect(response.body).to include("prepend", "notes")
         expect(response.body).to include("replace", "note_form")
       end
+
+      it "renders the error message when it does not pass validations" do
+        post notes_path, params: { note: { title: "Only Title" } }
+
+        expect(response.body).to include('error_message')
+        expect(response.body).to include("Body can&#39;t be blank and Note date can&#39;t be blank")
+      end
     end
 
     context "when user is not signed in" do
