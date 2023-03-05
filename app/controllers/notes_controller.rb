@@ -1,5 +1,5 @@
 class NotesController < ApplicationController
-  before_action :set_note, only: [:show, :update]
+  before_action :set_note, only: [:show, :update, :edit]
   def index
     @note = Note.new
     if params[:sort]
@@ -9,6 +9,12 @@ class NotesController < ApplicationController
     else
       @notes = current_user.notes
     end
+  end
+
+  def show
+  end
+
+  def edit
   end
 
   def create
@@ -28,8 +34,7 @@ class NotesController < ApplicationController
     end
   end
 
-  def show
-  end
+
 
   private
 
