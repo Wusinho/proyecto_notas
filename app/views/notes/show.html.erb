@@ -1,4 +1,11 @@
-<%#= render 'note', note: @note %>
-<h1>
-  Hello
-</h1>
+<div class="card mt-5">
+<!--  <img src="..." class="card-img" alt="...">-->
+  <div class="card-img-overlay">
+    <h5 class="card-title"><%= @note.title %></h5>
+    <p class="card-text"><%= @note.body %></p>
+    <p class="card-text"><%= @note.note_date %></p>
+    <%= link_to 'Back', notes_path %>
+  </div>
+
+</div>
+

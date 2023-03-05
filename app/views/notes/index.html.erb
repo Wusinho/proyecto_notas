@@ -3,10 +3,6 @@
   </div>
   <div>
     <%= render 'order_notes' %>
-    <%#= turbo_frame_tag 'posts' do %>
-    <%# end %>
-    <% @notes.each do |note| %>
-      <%= render 'note', note: note %>
-    <% end %>
+    <%= render @notes %>
   </div>
 </div>
