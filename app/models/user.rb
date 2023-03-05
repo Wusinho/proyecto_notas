@@ -5,11 +5,4 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :notes
 
-  def notes_title_ordered
-    self.notes.order(:title)
-  end
-
-  def notes_date_ordered
-    self.notes.order(:note_date)
-  end
 end
