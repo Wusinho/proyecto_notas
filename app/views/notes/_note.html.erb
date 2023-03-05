@@ -1,7 +1,12 @@
 <div class="card mb-3 note__card" style="width: 18rem;" id="<%= dom_id note %>">
+    <div class="card-header">
+      <%= note.title %>
+    </div>
   <div class="card-body">
-    <h5 class="card-title"><%= note.title %></h5>
     <p class="card-text text-truncate"><%= note.body %></p>
     <p class="card-text"><%= note.note_date %></p>
+    <div class="text-end">
+      <%= link_to 'Read more', note %>
+    </div>
   </div>
 </div>
