@@ -2,9 +2,10 @@ class NotesController < ApplicationController
   include ActionView::RecordIdentifier
   before_action :authenticate_user!
   before_action :set_note, only: [:show, :update, :edit]
+  before_action :selected_params, only: [:index]
   def index
     @note = Note.new
-    @notes = current_user.finder(params)
+    @notes = @selected_params.blank? ? current_user.notes : current_user.finder(@selected_params)
   end
 
   def show
@@ -39,9 +40,16 @@ class NotesController < ApplicationController
     render turbo_stream: streams
   end
 
-
-
   private
+
+  def selected_params
+    @selected_params = ''
+    params.each do |key, val|
+      next unless %w[sort search].include?(key)
+
+      @selected_params = val
+    end
+  end
 
   def set_note
     @note = Note.find(params[:id])

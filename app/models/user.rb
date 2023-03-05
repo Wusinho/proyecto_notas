@@ -5,16 +5,18 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :notes
 
-  def finder(params)
-    if params.keys == %w[controller action]
-      notes
-    elsif %w[title note_date].include?(params[:sort])
-      notes.order(params[:sort])
-    else
-      query = "%#{params[:search].downcase}%"
+  def finder(str)
+    %w[title note_date].include?(str) ? order_by_name(str) : search_by_title_body(str)
+  end
 
-      notes.where("title ILIKE :search OR body ILIKE :search", search: query)
-    end
+  def order_by_name(name)
+    notes.order("#{name} ASC")
+  end
+
+  def search_by_title_body(query)
+    query = "%#{query.downcase}%"
+
+    notes.where("title ILIKE :search OR body ILIKE :search", search: query)
   end
 
 end
