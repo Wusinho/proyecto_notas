@@ -1,11 +1,11 @@
 <div class="card mb-3" style="width: 18rem;" id="<%= dom_id note %>">
     <div class="card-header">
-      <%= link_to note.title, note_card_note_path(note), data: {
-        turbo_frame: 'card_note'
+      <%= link_to note.title, note_path(note), data: {
+        turbo_frame: 'full_note'
       }, class: 'text-decoration-none' %>
     </div>
   <div class="card-body">
     <p class="card-text text-truncate m-0"><%= note.body %></p>
-    <p class="card-text m-0"><%= note.note_date %></p>
+    <p class="card-text m-0 text-end"><%= note.note_date %></p>
   </div>
 </div>

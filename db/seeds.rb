@@ -12,10 +12,10 @@ password = '123456'
 users = User.all
 
 users.each do |user|
-  3.times do
+  10.times do
     Note.create(
       user_id: user.id,
-      title: Faker::Games::LeagueOfLegends.champion,
+      title: Faker::Book.title,
       body: Faker::Lorem.sentences(number: [8,16,20,28].sample).join(''),
       note_date: Date.today + [2,4,8].sample.to_d)
   end
