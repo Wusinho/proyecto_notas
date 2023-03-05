@@ -1,14 +1,16 @@
-<div class="d-flex note__container">
-  <div class="p-3">
-    <%= render 'form', note: @note %>
-  </div>
-  <div>
-    <%= render 'order_notes' %>
-    <%= turbo_frame_tag 'notes' do %>
-      <%= render @notes %>
-    <% end %>
-  </div>
-  <div>
-    <%= turbo_frame_tag "card_note" %>
+<div class="note__container">
+  <div class="row" >
+    <div class="p-3 col-3">
+      <%= render 'form', note: @note %>
+    </div>
+    <div class="col-3">
+      <%= render 'order_notes' %>
+      <%= turbo_frame_tag 'notes' do %>
+        <%= render @notes %>
+      <% end %>
+    </div>
+    <div class="col-6 px-5">
+        <%= turbo_frame_tag "card_note" %>
+    </div>
   </div>
 </div>
