@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Note, type: :model do
   describe Note do
-    context 'model assosiations' do
+    context 'Note associations' do
       it do
         should belong_to(:user)
       end

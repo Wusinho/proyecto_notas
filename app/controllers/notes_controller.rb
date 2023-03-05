@@ -1,4 +1,5 @@
 class NotesController < ApplicationController
+  include ActionView::RecordIdentifier
   before_action :set_note, only: [:show, :update, :edit]
   def index
     @note = Note.new
@@ -20,18 +21,27 @@ class NotesController < ApplicationController
   def create
     @note = current_user.notes.build(note_params)
 
-    respond_to do |format|
-      @note.save
-      format.turbo_stream
+    if @note.save
+      streams = []
+      streams << turbo_stream.prepend('notes', partial: 'notes/note', locals: { note: @note })
+      streams << turbo_stream.replace('note_form', partial: 'notes/form', locals: { note: Note.new } )
+      render turbo_stream: streams
+    else
+      render turbo_stream: turbo_stream.replace('error_message', partial: "shared/error_message", locals: { message: @note.errors.full_messages.to_sentence })
     end
 
   end
 
   def update
-    respond_to do |format|
-      @note.update(note_params)
-      format.turbo_stream
+    streams = []
+    if @note.update(note_params)
+    streams << turbo_stream.replace('edit_card', partial: 'full_note', locals: { note: @note } )
+    streams << turbo_stream.replace("#{dom_id @note}", partial: 'note', locals: { note: @note } )
+  else
+    streams << turbo_stream.replace('error_message', partial: 'shared/error_message', locals: { message: @note.errors.full_messages.to_sentence } )
     end
+
+    render turbo_stream: streams
   end
 
 
