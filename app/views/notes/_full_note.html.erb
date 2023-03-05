@@ -5,6 +5,6 @@
     <p class="card-text"><%= note.body %></p>
     <p class="card-text"><%= note.note_date %></p>
   </div>
-  <%= link_to 'Edit', note_path(note), class: blue_btn  %>
+  <%= link_to 'Edit', edit_note_path(note), class: blue_btn  %>
 </div>
 <% end %>

@@ -29,9 +29,6 @@ class NotesController < ApplicationController
   def show
   end
 
-  def note_card
-  end
-
   private
 
   def set_note
