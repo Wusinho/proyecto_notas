@@ -23,7 +23,10 @@ class NotesController < ApplicationController
   end
 
   def update
-    @note.update(note_params)
+    respond_to do |format|
+      @note.update(note_params)
+      format.turbo_stream
+    end
   end
 
   def show
