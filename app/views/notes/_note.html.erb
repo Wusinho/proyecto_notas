@@ -1,14 +1,13 @@
 <div class="card mb-3 note__card" style="width: 18rem;" id="<%= dom_id note %>">
     <div class="card-header">
-      <%= note.title %>
+      <%= link_to note.title, note_card_note_path(note), data: {
+        turbo_frame: 'card_note'
+      } %>
     </div>
   <div class="card-body">
     <p class="card-text text-truncate"><%= note.body %></p>
     <p class="card-text"><%= note.note_date %></p>
     <div class="text-end">
-      <%= link_to 'Read more', note_card_note_path(note), data: {
-        turbo_frame: 'card_note'
-      } %>
     </div>
   </div>
 </div>
