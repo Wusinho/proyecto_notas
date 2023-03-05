@@ -4,13 +4,7 @@ class NotesController < ApplicationController
   before_action :set_note, only: [:show, :update, :edit]
   def index
     @note = Note.new
-    if params[:sort]
-      @notes = current_user.notes.order(params[:sort])
-    elsif  params[:search]
-      @notes = current_user.finder(params[:search])
-    else
-      @notes = current_user.notes
-    end
+    @notes = current_user.finder(params)
   end
 
   def show
