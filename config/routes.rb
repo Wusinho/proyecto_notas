@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   get 'home_pages/index'
   root 'home_pages#index'
-  resources :notes, only: [:index, :show, :create, :edit, :update] do
+  resources :notes, only: [:index, :show, :create, :update] do
     get :note_card, on: :member
   end
 

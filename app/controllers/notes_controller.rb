@@ -19,9 +19,6 @@ class NotesController < ApplicationController
 
   end
 
-  def edit
-  end
-
   def update
     respond_to do |format|
       @note.update(note_params)
@@ -33,7 +30,6 @@ class NotesController < ApplicationController
   end
 
   def note_card
-
   end
 
   private
@@ -41,7 +37,6 @@ class NotesController < ApplicationController
   def set_note
     @note = Note.find(params[:id])
   end
-
 
   def note_params
     params.require(:note).permit(:body, :title, :note_date)
