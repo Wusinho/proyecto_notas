@@ -1,7 +1,7 @@
 <div class="card mb-3" style="width: 18rem;" id="<%= dom_id note %>">
     <div class="card-header">
       <%= link_to note.title, note_path(note), data: {
-        turbo_frame: 'card_note'
+        turbo_frame: 'full_note'
       }, class: 'text-decoration-none' %>
     </div>
   <div class="card-body">
