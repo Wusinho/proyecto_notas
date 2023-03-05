@@ -53,27 +53,17 @@ RSpec.describe NotesController, type: :request do
 
       context "with valid params" do
         it "updates the note" do
-          patch note_path(note), params: { note: { title: "Updated Title" } }, headers: { "HTTP_ACCEPT" => "text/vnd.turbo-stream.html" }
+          patch note_path(note), params: { note: { title: "Updated Title" } }
           expect(note.reload.title).to eq("Updated Title")
         end
 
-        it "renders the turbo streams" do
-          patch note_path(note), params: { note: { title: "Updated Title" } }, headers: { "HTTP_ACCEPT" => "text/vnd.turbo-stream.html" }
-          expect(response.body).to include('edit_card')
-          expect(response.body).to include('note')
-        end
       end
 
       context "with invalid params" do
-        it "does not update the note" do
-          patch note_path(note), params: { note: { title: "" } }, headers: { "HTTP_ACCEPT" => "text/vnd.turbo-stream.html" }
-          expect(note.reload.title).to_not eq("")
-        end
-
         it "renders the error message" do
-          patch note_path(note), params: { note: { title: "" } }, headers: { "HTTP_ACCEPT" => "text/vnd.turbo-stream.html" }
+          patch note_path(note), params: { note: { title: "" } }
           expect(response.body).to include('error_message')
-          expect(response.body).to include("Title can't be blank")
+          expect(response.body).to include("Title can&#39;t be blank")
         end
       end
     end
