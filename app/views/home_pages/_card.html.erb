@@ -1,0 +1,12 @@
+<div class="col">
+  <div class="card" >
+    <div class="card-body">
+      <h5><%= link_to note.title, home_page_path(note) %></h5>
+      <p class="card-text text-truncate m-0"><%= note.body %></p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted"><%= note.note_date %></small>
+    </div>
+  </div>
+
+</div>

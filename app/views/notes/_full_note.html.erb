@@ -5,6 +5,8 @@
     <p class="card-text lh-lg body__text"><%= note.body %></p>
     <footer class="blockquote-footer mt-2 text-end"><%= note.user.email %> <cite title="Source Title"><%= note.note_date %></cite></footer>
   </div>
-  <%= link_to 'Edit', edit_note_path(note), class: blue_btn  %>
+  <% if can_edit_note?(note) %>
+    <%= link_to 'Edit', edit_note_path(note), class: blue_btn %>
+  <% end %>
 </div>
 <% end %>
