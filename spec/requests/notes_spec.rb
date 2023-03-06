@@ -22,7 +22,7 @@ RSpec.describe NotesController, type: :request do
         sign_in user
       end
 
-      it 'should should all the current_user notes' do
+      it 'should include all the current_user notes' do
         get notes_path
         card = partial_note(note)
         card2 = partial_note(note2)
@@ -36,14 +36,14 @@ RSpec.describe NotesController, type: :request do
         expect(response.body).not_to include(card)
       end
 
-      it 'should should not return a value if exist but its from another user' do
+      it 'should not return a value if exist but its from another user' do
         get notes_path, params: { search: note3.title }
         card = partial_note(note3)
         # str = "class=\"text-decoration-none\" href=\"/notes/#{note3.id}\">#{note3.title}</a>\n "
         expect(response.body).not_to include(card)
       end
 
-      it 'should should return a value if exist and its from its owner' do
+      it 'should return a value if exist and its from its owner' do
         get notes_path, params: { search: note2.title }
         card = partial_note(note2)
         expect(response.body).to include(card)
