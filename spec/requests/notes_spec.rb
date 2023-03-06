@@ -4,6 +4,10 @@
 
 require 'rails_helper'
 
+def partial_note(note)
+  ApplicationController.render(partial: 'notes/note', locals: { note: note }).to_s
+end
+
 RSpec.describe NotesController, type: :request do
   let!(:user) { create(:user) }
   let!(:user2) { create(:user) }
@@ -20,28 +24,29 @@ RSpec.describe NotesController, type: :request do
 
       it 'should should all the current_user notes' do
         get notes_path
-        expect(response.body).to include(note.title)
-        expect(response.body).to include(note.body)
-        expect(response.body).to include(note2.title)
-        expect(response.body).to include(note2.body)
+        card = partial_note(note)
+        card2 = partial_note(note2)
+        expect(response.body).to include(card)
+        expect(response.body).to include(card2)
       end
 
       it 'should should not get other users notes' do
         get notes_path
-        expect(response.body).not_to include(note3.title)
-        expect(response.body).not_to include(note3.body)
+        card = partial_note(note3)
+        expect(response.body).not_to include(card)
       end
 
       it 'should should not return a value if exist but its from another user' do
         get notes_path, params: { search: note3.title }
-        str = "class=\"text-decoration-none\" href=\"/notes/#{note3.id}\">#{note3.title}</a>\n "
-        expect(response.body).not_to include(str)
+        card = partial_note(note3)
+        # str = "class=\"text-decoration-none\" href=\"/notes/#{note3.id}\">#{note3.title}</a>\n "
+        expect(response.body).not_to include(card)
       end
 
       it 'should should return a value if exist and its from its owner' do
         get notes_path, params: { search: note2.title }
-        str = "class=\"text-decoration-none\" href=\"/notes/#{note2.id}\">#{note2.title}</a>\n "
-        expect(response.body).to include(str)
+        card = partial_note(note2)
+        expect(response.body).to include(card)
       end
     end
   end
@@ -63,6 +68,9 @@ RSpec.describe NotesController, type: :request do
       it 'returns a successful response' do
         post notes_path, params: { note: note_params }
         expect(response).to be_successful
+        note = Note.first
+        card = partial_note(note)
+        expect(response.body).to include(card)
       end
 
       it 'returns the correct turbo stream responses' do
@@ -104,14 +112,18 @@ RSpec.describe NotesController, type: :request do
 
       context 'with valid params' do
         it 'updates the note' do
+          old_title = note.title
+
           patch note_path(note), params: { note: { title: 'Updated Title' } }
           expect(note.reload.title).to eq('Updated Title')
+          expect(note.reload.title).not_to eq(old_title)
         end
       end
 
       context 'with invalid params' do
         it 'renders the error message' do
           patch note_path(note), params: { note: { title: '' } }
+
           expect(response.body).to include('error_message')
           expect(response.body).to include('Title can&#39;t be blank')
         end

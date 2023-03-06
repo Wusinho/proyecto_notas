@@ -12,9 +12,8 @@ RSpec.describe HomePagesController, type: :request do
       expect(response).to have_http_status(:success)
       expect(Note.count).to equal(5)
       notes.each do |note|
-        expect(response.body).to include(note.title)
-        expect(response.body).to include(note.body)
-        expect(response.body).to include(note.note_date)
+        card = ApplicationController.render(partial: 'home_pages/card', locals: { note: note }).to_s
+        expect(response.body).to include(card)
       end
     end
   end
