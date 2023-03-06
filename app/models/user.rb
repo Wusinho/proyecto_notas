@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -16,7 +18,6 @@ class User < ApplicationRecord
   def search_by_title_body(query)
     query = "%#{query.downcase}%"
 
-    notes.where("title ILIKE :search OR body ILIKE :search", search: query)
+    notes.where('title ILIKE :search OR body ILIKE :search', search: query)
   end
-
 end
