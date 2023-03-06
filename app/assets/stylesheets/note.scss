@@ -10,6 +10,12 @@
   justify-content: center;
 }
 
+.filter__container {
+  position: sticky;
+  top:0;
+  z-index: 99999;
+}
+
 .body__text {
   text-align: justify;
 }
@@ -22,7 +28,7 @@
   margin: 20px 0;
 }
 
-.notes {
+.all__notes {
   height: 70vh;
-  overflow: scroll;
+  overflow-y: scroll;
 }

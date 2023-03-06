@@ -3,12 +3,12 @@
     <div class="">
       <%= render 'form', note: @note %>
     </div>
-    <div class="">
+    <div class="all__notes">
       <%= render 'order_notes' %>
       <%= turbo_frame_tag 'notes' do %>
-        <div class="notes">
+<!--        <div class="notes">-->
             <%= render @notes %>
-        </div>
+<!--        </div>-->
       <% end %>
     </div>
     <div class="full__note__container">
