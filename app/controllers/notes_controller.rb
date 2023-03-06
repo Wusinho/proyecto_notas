@@ -45,11 +45,8 @@ class NotesController < ApplicationController
 
   def selected_params
     @selected_params = ''
-    params.each do |key, val|
-      next unless %w[sort search].include?(key)
-
-      @selected_params = val
-    end
+    @selected_params = params[:sort] if params[:sort].present?
+    @selected_params = params[:search] if params[:search].present?
   end
 
   def set_note
