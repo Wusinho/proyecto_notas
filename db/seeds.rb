@@ -12,7 +12,8 @@ password = '123456'
 users = User.all
 
 users.each do |user|
-  3.times do
+  no = [5, 8].sample
+  no.times do
     Note.create(
       user_id: user.id,
       title: Faker::Book.title,

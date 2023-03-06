@@ -6,7 +6,9 @@
     <div class="">
       <%= render 'order_notes' %>
       <%= turbo_frame_tag 'notes' do %>
-        <%= render @notes %>
+        <div class="notes">
+            <%= render @notes %>
+        </div>
       <% end %>
     </div>
     <div class="full__note__container">
