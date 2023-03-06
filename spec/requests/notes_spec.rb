@@ -20,9 +20,16 @@ RSpec.describe NotesController, type: :request do
 
       it 'should should all the current_user notes' do
         get notes_path
-        expect(response.body).not_to include('zzz')
-        expect(response.body).to include('aaaaaa')
-        expect(response.body).to include('cccc')
+        expect(response.body).to include(note.title)
+        expect(response.body).to include(note.body)
+        expect(response.body).to include(note2.title)
+        expect(response.body).to include(note2.body)
+      end
+
+      it 'should should not get other users notes' do
+        get notes_path
+        expect(response.body).not_to include(note3.title)
+        expect(response.body).not_to include(note3.body)
       end
 
       it 'should should not return a value if exist but its from another user' do
