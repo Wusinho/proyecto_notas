@@ -3,7 +3,6 @@
 class Note < ApplicationRecord
   belongs_to :user
   validates_presence_of :title, :body, :note_date
-  validates_uniqueness_of :title
   validate :valid_date?, unless: :date_presence?
 
   def date_presence?
