@@ -1,17 +1,15 @@
-<div class="note__container">
 <%= render 'search_bar' %>
-  <div class="row" >
-    <div class="p-3 col-3">
+<div class="note__container">
+    <div class="">
       <%= render 'form', note: @note %>
     </div>
-    <div class="col-3">
+    <div class="">
       <%= render 'order_notes' %>
       <%= turbo_frame_tag 'notes' do %>
         <%= render @notes %>
       <% end %>
     </div>
-    <div class="col-6 px-5">
+    <div class="full__note__container">
         <%= turbo_frame_tag "full_note" %>
     </div>
-  </div>
 </div>

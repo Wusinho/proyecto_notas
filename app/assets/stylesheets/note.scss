@@ -1,5 +1,6 @@
 .note__container {
-  margin-top: 50px;
+  display: flex;
+  gap: 20px;
 }
 
 .card__filter {
@@ -11,4 +12,12 @@
 
 .body__text {
   text-align: justify;
+}
+
+.full__note__container {
+  max-width: 40vw;
+}
+
+.search__bar {
+  margin: 20px 0;
 }
