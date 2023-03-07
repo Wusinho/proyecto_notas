@@ -29,6 +29,6 @@
 }
 
 .all__notes {
-  height: 70vh;
-  overflow-y: scroll;
+  max-height: 85vh;
+  overflow: auto;
 }
