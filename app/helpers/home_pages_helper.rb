@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module HomePagesHelper
   def blue_btn
     'btn btn-primary'
@@ -12,11 +14,10 @@ module HomePagesHelper
   end
 
   def f_label
-    "form-label"
+    'form-label'
   end
 
   def f_control
-    "form-control"
+    'form-control'
   end
-
 end

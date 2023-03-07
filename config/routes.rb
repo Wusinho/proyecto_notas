@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
-  get 'home_pages/index'
   root 'home_pages#index'
-  resources :notes
+  resources :notes, except: %i[destroy new]
+  resources :home_pages, only: %i[index show]
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
