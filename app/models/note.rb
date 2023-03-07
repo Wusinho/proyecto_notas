@@ -1,9 +1,13 @@
 # frozen_string_literal: true
 
 class Note < ApplicationRecord
+  include Filterable
   belongs_to :user
   validates_presence_of :title, :body, :note_date
   validate :valid_date?, unless: :date_presence?
+
+  scope :filter_sort_by_name, ->(value) { order("#{value} ASC") }
+  scope :filter_search, ->(value) { where( "title ILIKE :search OR body ILIKE :search", search: "%#{value.downcase}%") }
 
   def date_presence?
     note_date.blank?

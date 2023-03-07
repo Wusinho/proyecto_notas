@@ -7,7 +7,7 @@ class NotesController < ApplicationController
   before_action :selected_params, only: [:index]
   def index
     @note = Note.new
-    @notes = @selected_params.blank? ? current_user.notes : current_user.finder(@selected_params)
+    @notes = Note.filter(@selected_params, current_user)
   end
 
   def show; end
@@ -44,9 +44,7 @@ class NotesController < ApplicationController
   private
 
   def selected_params
-    @selected_params = ''
-    @selected_params = params[:sort] if params[:sort].present?
-    @selected_params = params[:search] if params[:search].present?
+    @selected_params = params.slice(:sort_by_name, :search)
   end
 
   def set_note
