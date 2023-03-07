@@ -5,8 +5,7 @@ module Filterable
   module ClassMethods
     def filter(filtering_params, user = nil)
       results = where(nil)
-      results = results.where(user:) if method_defined?(:user)
-
+      results = results.where(user:) if method_defined?(:user) && user
       key = filtering_params.keys.first
       value = filtering_params.values.first
       if value.present?

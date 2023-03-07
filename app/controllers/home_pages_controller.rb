@@ -3,7 +3,7 @@
 class HomePagesController < ApplicationController
   before_action :set_note, only: [:show]
   def index
-    @notes = Note.all
+    @notes = Note.filter(params.slice(:sort_by_name))
   end
 
   def show; end
