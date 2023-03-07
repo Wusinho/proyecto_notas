@@ -5,6 +5,8 @@ class Note < ApplicationRecord
   belongs_to :user
   validates_presence_of :title, :body, :note_date
   validate :valid_date?, unless: :date_presence?
+  belongs_to :author, foreign_key: :user_id, class_name: 'User'
+
 
   scope :filter_sort_by_name, ->(value) { order("#{value} ASC") }
   scope :filter_search, ->(value) { where( "title ILIKE :search OR body ILIKE :search", search: "%#{value.downcase}%") }
