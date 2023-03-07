@@ -1,8 +1,8 @@
-<%= form_tag(notes_path, method: :get, class: 'search__bar row g-3') do %>
+<%= form_tag(locals[:path], method: :get, class: 'search__bar row g-3') do %>
   <div class="col-auto">
     <%= text_field_tag(:search, params[:search], placeholder: 'Search by Title or Content', class: 'form-control') %>
   </div>
   <div class="col-auto">
-    <%= submit_tag("Search", class: blue_btn) %>
+    <%= submit_tag("Search", class: blue_btn, method: :get) %>
   </div>
 <% end %>

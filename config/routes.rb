@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root 'home_pages#index'
   resources :notes
-  resources :home_pages, only: [:index, :show]
+  resources :home_pages, only: %i[index show]
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

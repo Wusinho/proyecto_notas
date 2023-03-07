@@ -1,4 +1,4 @@
-<%= render 'search_bar' %>
+<%= render 'search_bar', locals:{ path: notes_path } %>
 <div class="note__container">
     <div class="">
       <%= render 'form', note: @note %>
