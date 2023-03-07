@@ -2,8 +2,10 @@
 
 class HomePagesController < ApplicationController
   before_action :set_note, only: [:show]
+  before_action :selected_params, only: [:index]
+
   def index
-    @notes = Note.filter(params.slice(:sort_by_name))
+    @notes = Note.filter(@selected_params)
   end
 
   def show; end

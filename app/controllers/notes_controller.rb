@@ -43,10 +43,6 @@ class NotesController < ApplicationController
 
   private
 
-  def selected_params
-    @selected_params = params.slice(:sort_by_name, :search)
-  end
-
   def set_note
     @note = Note.find(params[:id])
   end
