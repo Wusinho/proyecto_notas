@@ -1,4 +1,4 @@
-# Notes Project for NetForeMost
+# Notes Project
 
 The goal of this project is to demonstrate the use of clean code best practices and basic design patterns 
 in Ruby. The project consists of developing a basic virtual notebook in which the user can create, view, 
