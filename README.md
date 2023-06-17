@@ -4,7 +4,7 @@ The goal of this project is to demonstrate the use of clean code best practices 
 in Ruby. The project consists of developing a basic virtual notebook in which the user can create, view, 
 and edit notes, as well as search for notes by title or body content.
 
-## User Stories
+## Description of the Project
 ### [User Story 1](https://github.com/Wusinho/proyecto_notas/tree/dev-historia_1)
 The user should be able to create notes that contain:
 
